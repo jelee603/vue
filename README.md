@@ -27,3 +27,5 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+See [https://www.npmjs.com/package/free-transform]
+See [https://www.npmjs.com/package/vue-grid-layout]
