@@ -10,23 +10,27 @@
                 :is-mirrored="false"
                 :vertical-compact="true"
                 :margin="[10, 10]"
-                :use-css-transforms="true">
+                :use-css-transforms="true"
+                @layout-created="layoutCreatedEvent"
+        >
             <grid-item v-for="item in layout"
                        :x="item.x"
                        :y="item.y"
                        :w="item.w"
                        :h="item.h"
-                       :i="item.i">
+                       :i="item.i"
+                       @resized="resizedEvent"
+            >
                 <component v-if="item.isComponent"
                            :is="item.c"
                            :x="item.x"
                            :y="item.y"
-                           :width="item.w"
-                           :height="item.h"
-                           :init-w="200"
-                           :init-h="200"
+                           :id="id"
+                           :width="item.i === id ? newWPx : null"
+                           :height="item.i === id ? newHPx : null"
                            :background="item.background"
-                >{{item.h}}{{item.x}}</component>
+                           ref="test"
+                >{{item.i === id ? newWPx : 0}}</component>
                 <div v-else v-html="item.c"></div>
             </grid-item>
         </grid-layout>
@@ -134,7 +138,13 @@
                 offsetX: 0,
                 offsetY: 0,
                 selectedElement: null,
+                newHPx: 0,
+                newWPx: 0,
+                id: null,
             }
+        },
+        created() {
+            // this.$refs.test.resizedEvent = resizedEvent()
         },
         mounted() {
             this.offsetX = this.$refs.workspace.offsetLeft;
@@ -161,6 +171,16 @@
                     ...styles
                 };
             },
+            resizedEvent: function(i, newH, newW, newHPx, newWPx){
+                console.log("RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
+                this.newHPx = newHPx;
+                this.newWPx = newWPx;
+                this.id = i;
+
+            },
+            layoutCreatedEvent: function(newLayout){
+                console.log("Created layout: ", newLayout)
+            }
         }
     }
 </script>
