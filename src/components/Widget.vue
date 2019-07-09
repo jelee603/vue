@@ -1,14 +1,10 @@
 <template>
-    <div>
-        <div :style="computedStyles.element">
-            <div class="header">
-                <button @click="onMinimum">최소화</button>
-                <button @click="onMaximum">최대화</button>
-            </div>
-            <div>
-                <slot></slot>
-            </div>
-        </div>
+    <div :style="computedStyles.element">
+        <!--<div class="header">-->
+            <!--<button @click="onMinimum">최소화</button>-->
+            <!--<button @click="onMaximum">최대화</button>-->
+        <!--</div>-->
+        <slot name="headers"></slot>
     </div>
 </template>
 
@@ -26,23 +22,19 @@
             },
             width: {
                 type: Number,
-                default: 0
+                default: 50
             },
             height: {
                 type: Number,
-                default: 0
-            },
-            initW: {
-                type: Number,
-                required: true
-            },
-            initH: {
-                type: Number,
-                required: true
+                default: 100
             },
             background: {
                 type: String,
                 default: '#63b87c'
+            },
+            id: {
+                type: String,
+                default: null,
             }
         },
         data: function() {
@@ -55,14 +47,12 @@
         },
         computed: {
             computedStyles() {
-                let pos = this.calcPosition(this.x, this.y, this.width, this.height);
-
                 return {
                     element: {
-                        x: pos.top,
-                        y: pos.left,
-                        width: `${pos.width + 60}px`,
-                        height: `${pos.height + 5}px`,
+                        // x: pos.top,
+                        // y: pos.left,
+                        width: `${this.width}px`,
+                        height: `${this.height}px`,
                         background: this.background
                     }
                 }
@@ -90,40 +80,6 @@
                     height: 200,
                     angle: 0,
                 })
-            },
-            calcColWidth() {
-                const colWidth = (this.containerWidth - (this.margin[0] * (this.cols + 1))) / this.cols;
-                // console.log("### COLS=" + this.cols + " COL WIDTH=" + colWidth + " MARGIN " + this.margin[0]);
-                return colWidth;
-            },
-            calcPosition: function (x, y, w, h) {
-                const colWidth = this.calcColWidth();
-                // add rtl support
-                let out;
-                if (this.renderRtl) {
-                    out = {
-                        right: Math.round(colWidth * x + (x + 1) * this.margin[0]),
-                        top: Math.round(this.rowHeight * y + (y + 1) * this.margin[1]),
-                        // 0 * Infinity === NaN, which causes problems with resize constriants;
-                        // Fix this if it occurs.
-                        // Note we do it here rather than later because Math.round(Infinity) causes deopt
-                        width: w === Infinity ? w : Math.round(colWidth * w + Math.max(0, w - 1) * this.margin[0]),
-                        height: h === Infinity ? h : Math.round(this.rowHeight * h + Math.max(0, h - 1) * this.margin[1])
-                    };
-                } else {
-                    out = {
-                        left: Math.round(colWidth * x + (x + 1) * this.margin[0]),
-                        top: Math.round(this.rowHeight * y + (y + 1) * this.margin[1]),
-                        // 0 * Infinity === NaN, which causes problems with resize constriants;
-                        // Fix this if it occurs.
-                        // Note we do it here rather than later because Math.round(Infinity) causes deopt
-                        width: w === Infinity ? w : Math.round(colWidth * w + Math.max(0, w - 1) * this.margin[0]),
-                        height: h === Infinity ? h : Math.round(this.rowHeight * h + Math.max(0, h - 1) * this.margin[1])
-                    };
-                }
-
-
-                return out;
             },
         }
     }
