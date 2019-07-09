@@ -11,16 +11,14 @@
                 :vertical-compact="true"
                 :margin="[10, 10]"
                 :use-css-transforms="true"
-                @layout-created="layoutCreatedEvent"
-        >
+                @layout-created="layoutCreatedEvent">
             <grid-item v-for="item in layout"
                        :x="item.x"
                        :y="item.y"
                        :w="item.w"
                        :h="item.h"
                        :i="item.i"
-                       @resized="resizedEvent"
-            >
+                       @resized="resizedEvent">
                 <component v-if="item.isComponent"
                            :is="item.c"
                            :x="item.x"
@@ -29,8 +27,9 @@
                            :width="item.i === id ? newWPx : null"
                            :height="item.i === id ? newHPx : null"
                            :background="item.background"
-                           ref="test"
-                >{{item.i === id ? newWPx : 0}}</component>
+                           ref="test">
+                    <div slot="headers"><b>{{item.i}}</b></div>
+                </component>
                 <div v-else v-html="item.c"></div>
             </grid-item>
         </grid-layout>

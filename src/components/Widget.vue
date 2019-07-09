@@ -4,9 +4,7 @@
             <!--<button @click="onMinimum">최소화</button>-->
             <!--<button @click="onMaximum">최대화</button>-->
         <!--</div>-->
-        <div>
-            <slot></slot>
-        </div>
+        <slot name="headers"></slot>
     </div>
 </template>
 
