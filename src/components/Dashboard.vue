@@ -23,7 +23,7 @@
                            :is="item.c"
                            :x="item.x"
                            :y="item.y"
-                           :id="id"
+                           :id="item.i"
                            :width="item.i === id ? newWPx : null"
                            :height="item.i === id ? newHPx : null"
                            :background="item.background"
@@ -70,11 +70,11 @@
         {"x": 8,"y": 0,"w": 2,"h": 3,"i": "4"},
         {"x": 10,"y": 0,"w": 2,"h": 3,"i": "5"},
         {"x": 0,"y": 5,"w": 2,"h": 5,"i": "6"},
-        {"x": 2,"y": 5,"w": 2,"h": 5,"i": "7", "c": 'Widget', isComponent: true, "background": "#FA8517"},
+        {"x": 2,"y": 5,"w": 2,"h": 5,"i": "7", "c": 'Widget', isComponent: true, "background": "#fba95c"},
         {"x": 4,"y": 5,"w": 2,"h": 5,"i": "8"},
         {"x": 6,"y": 3,"w": 2,"h": 4,"i": "9"},
         {"x": 8,"y": 4,"w": 2,"h": 4,"i": "10"},
-        {"x": 10,"y": 4,"w": 2,"h": 4,"i": "11", "c": 'Widget', isComponent: true, "background": "#D31D96"},
+        {"x": 10,"y": 4,"w": 2,"h": 4,"i": "11", "c": 'Widget', isComponent: true, "background": "#e98eca"},
         {"x": 0,"y": 10,"w": 2,"h": 5,"i": "12"},
         {"x": 2,"y": 10,"w": 2,"h": 5,"i": "13"},
         {"x": 4,"y": 8,"w": 2,"h": 4,"i": "14"},
@@ -171,14 +171,14 @@
                 };
             },
             resizedEvent: function(i, newH, newW, newHPx, newWPx){
-                console.log("RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
+                // console.log("RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
                 this.newHPx = newHPx;
                 this.newWPx = newWPx;
                 this.id = i;
 
             },
             layoutCreatedEvent: function(newLayout){
-                console.log("Created layout: ", newLayout)
+                // console.log("Created layout: ", newLayout)
             }
         }
     }
