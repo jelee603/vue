@@ -5,10 +5,14 @@
             <!--<button @click="onMaximum">최대화</button>-->
         <!--</div>-->
         <slot name="headers"></slot>
+        <div :id="generateID"></div>
+
     </div>
 </template>
 
 <script>
+    import BarChart from "../plugins/BarChart"
+
     export default {
         name: "Widget",
         props: {
@@ -56,7 +60,18 @@
                         background: this.background
                     }
                 }
-            }
+            },
+            generateID() {
+                return `myChart-${this.id}`
+            },
+
+        },
+        mounted() {
+            const id = this.generateID;
+            // console.log(id)
+            const chart = new BarChart(`${id}`);
+
+            chart.init();
         },
         methods: {
             onMinimum(event) {
