@@ -13,6 +13,7 @@
                 :use-css-transforms="true"
                 @layout-created="layoutCreatedEvent">
             <grid-item v-for="item in layout"
+                       :key="item.i"
                        :x="item.x"
                        :y="item.y"
                        :w="item.w"
@@ -59,8 +60,8 @@
 </template>
 <script>
     import VueGridLayout from 'vue-grid-layout'
-    import FreeTransform from "./FreeTransform"
-    import Widget from "./Widget"
+    import FreeTransform from "./freeTransform"
+    import Widget from "./widget"
 
     const testLayout = [
         {"x": 0,"y": 0,"w": 2,"h": 2,"i": "0", "c": 'Widget', isComponent: true},
@@ -177,9 +178,6 @@
                 this.id = i;
 
             },
-            layoutCreatedEvent: function(newLayout){
-                // console.log("Created layout: ", newLayout)
-            }
         }
     }
 </script>

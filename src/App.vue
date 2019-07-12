@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Test from "./components/Dashboard"
+import Test from "./components/dashboard"
 
 
 export default {
