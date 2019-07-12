@@ -11,7 +11,7 @@
 </template>
 
 <script>
-    import BarChart from "../plugins/BarChart"
+    import BarChart from "../plugins/barChart"
 
     export default {
         name: "Widget",
