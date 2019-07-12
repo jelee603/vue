@@ -12,6 +12,7 @@
 
 <script>
     import BarChart from "../plugins/barChart"
+    import PieChart from "../plugins/pieChart"
 
     export default {
         name: "Widget",
@@ -68,8 +69,8 @@
         },
         mounted() {
             const id = this.generateID;
-            // console.log(id)
             const chart = new BarChart(`${id}`);
+            // const chart = new PieChart(`${id}`);
 
             chart.init();
         },
