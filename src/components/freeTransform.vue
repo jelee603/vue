@@ -27,7 +27,7 @@
 </template>
 
 <script>
-    import {styler, scale, translate, rotate} from 'free-transform'
+    import {styler, scale, translate} from 'free-transform'
 
     export default {
         name: 'Transform',
