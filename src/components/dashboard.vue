@@ -122,25 +122,21 @@
 
             },
             startWorker() {
-                // Worker 지원 유무 확인
+                // 브라우저 지원 유무 확인
                 let worker = this.worker;
-                if (!!window.Worker) {
-
-                    // 실행하고 있는 워커 있으면 중지시키기
-                    if (!!worker) {
+                if (window.Worker !== undefined) {
+                    // 실행하고 있는 워커 있으면 중지한다.
+                    if (worker !== undefined) {
                         this.stopWorker();
                     }
 
                     worker = new myWorker();
-                    worker.postMessage('워커 실행');    // 워커에 메시지를 보낸다.
-
-                    // 메시지는 JSON구조로 직렬화 할 수 있는 값이면 사용할 수 있다. Object등
-                    // worker.postMessage( { name : '302chanwoo' } );
+                    // 워커에 메시지를 보낸다.
+                    worker.postMessage('워커 실행');
 
                     // 워커로 부터 메시지를 수신한다.
                     worker.onmessage = function (e) {
                         console.log('호출 페이지 - ', e.data);
-                        // output.innerHTML += e.data;
                     };
                 }
                 this.worker = worker;
@@ -148,7 +144,7 @@
             stopWorker() {
                 let worker = this.worker;
 
-                if(worker) {
+                if (worker) {
                     worker.terminate();
                     worker = null;
                 }
