@@ -1,6 +1,10 @@
 <template>
     <div class="about">
         <h1>This is test page</h1>
+        <div class="about-header">
+            <button @click="startWorker" class="btn">워커 시작</button>
+            <button @click="stopWorker" class="btn">워커 중지</button>
+        </div>
         <grid-layout
                 :layout.sync="layout"
                 :col-num="12"
@@ -11,7 +15,7 @@
                 :vertical-compact="true"
                 :margin="[10, 10]"
                 :use-css-transforms="true"
-                class="wrap">
+                class="dashboard-layout">
             <grid-item v-for="item in layout"
                        :key="item.i"
                        :x="item.x"
@@ -63,6 +67,7 @@
     import VueGridLayout from 'vue-grid-layout'
     import FreeTransform from "./freeTransform"
     import Widget from "./widget"
+    import myWorker from "worker-loader!../service/WebWorker.js";
 
     const testLayout = [
         {"x": 0,"y": 0,"w": 2,"h": 2,"i": "0", "c": 'Widget', isComponent: true},
@@ -179,6 +184,39 @@
                 this.id = i;
 
             },
+            startWorker() {
+                // Worker 지원 유무 확인
+                let worker = this.worker;
+                if (!!window.Worker) {
+
+                    // 실행하고 있는 워커 있으면 중지시키기
+                    if (!!worker) {
+                        this.stopWorker();
+                    }
+
+                    worker = new myWorker();
+                    worker.postMessage('워커 실행');    // 워커에 메시지를 보낸다.
+
+                    // 메시지는 JSON구조로 직렬화 할 수 있는 값이면 사용할 수 있다. Object등
+                    // worker.postMessage( { name : '302chanwoo' } );
+
+                    // 워커로 부터 메시지를 수신한다.
+                    worker.onmessage = function (e) {
+                        console.log('호출 페이지 - ', e.data);
+                        // output.innerHTML += e.data;
+                    };
+                }
+                this.worker = worker;
+            },
+            stopWorker() {
+                let worker = this.worker;
+
+                if(worker) {
+                    worker.terminate();
+                    worker = null;
+                }
+                this.worker = worker;
+            }
         }
     }
 </script>
@@ -199,6 +237,14 @@
     .item-layout {
         background: #343434 !important;
         border: 1px solid #ccc !important;
+    }
+
+    .dashboard-layout {
+        background: #222222;
+    }
+
+    .about-header {
+        text-align: left;
     }
 
 </style>
