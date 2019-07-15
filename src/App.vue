@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-      <Test></Test>
+      <p>
+        <router-link to="/sample">Go to Sample</router-link>
+      </p>
+      <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Test from "./components/dashboard"
-
-
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-      Test
+
   }
 }
 </script>

@@ -39,33 +39,11 @@
                 <div v-else v-html="item.c"></div>
             </grid-item>
         </grid-layout>
-        <div class="wrapper">
-            <div class="workspace" ref="workspace">
-                <FreeTransform
-                        v-for="element in elements"
-                        :key="element.id"
-                        :x="element.x"
-                        :y="element.y"
-                        :scale-x="element.scaleX"
-                        :scale-y="element.scaleY"
-                        :width="element.width"
-                        :height="element.height"
-                        :angle="element.angle"
-                        :offset-x="offsetX"
-                        :offset-y="offsetY"
-                        :disable-scale="element.disableScale === true"
-                        @update="update(element.id, $event);">
-                    <div class="element" :style="getElementStyles(element)">
-                        {{ element.text }}
-                    </div>
-                </FreeTransform>
-            </div>
-        </div>
     </div>
 </template>
-<script scoped>
+
+<script>
     import VueGridLayout from 'vue-grid-layout'
-    import FreeTransform from "./freeTransform"
     import Widget from "./widget"
     import myWorker from "worker-loader!../service/WebWorker.js";
 
@@ -97,7 +75,6 @@
         components: {
             GridLayout: VueGridLayout.GridLayout,
             GridItem: VueGridLayout.GridItem,
-            FreeTransform,
             Widget,
         },
         data() {
@@ -125,24 +102,6 @@
                 radio: 'option A',
                 list: [{name:'option A', value: 3}, {name:'option B', value: 6}],
                 layout: testLayout,
-                elements: [
-                    {
-                        id: "el-1",
-                        x: 100,
-                        y: 50,
-                        scaleX: 1,
-                        scaleY: 1,
-                        width: 200,
-                        height: 200,
-                        angle: 0,
-                        classPrefix: "tr",
-                        styles: {
-                            background: "linear-gradient(135deg, #0FF0B3 0%,#036ED9 100%)"
-                        }
-                    },
-                ],
-                offsetX: 0,
-                offsetY: 0,
                 selectedElement: null,
                 newHPx: 0,
                 newWPx: 0,
@@ -153,30 +112,8 @@
             // this.$refs.test.resizedEvent = resizedEvent()
         },
         mounted() {
-            this.offsetX = this.$refs.workspace.offsetLeft;
-            this.offsetY = this.$refs.workspace.offsetTop;
         },
         methods: {
-            update(id, payload) {
-                // console.log('payload >>', payload)
-                this.elements = this.elements.map(item => {
-                    if (item.id === id) {
-                        return {
-                            ...item,
-                            ...payload
-                        };
-                    }
-                    return item;
-                });
-            },
-            getElementStyles(element) {
-                const styles = element.styles ? element.styles : {};
-                return {
-                    width: `${element.width}px`,
-                    height: `${element.height}px`,
-                    ...styles
-                };
-            },
             resizedEvent: function(i, newH, newW, newHPx, newWPx){
                 // console.log("RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
                 this.newHPx = newHPx;
@@ -220,20 +157,8 @@
         }
     }
 </script>
+
 <style>
-    .wrapper {
-        flex: 1;
-    }
-
-    .workspace {
-        width: 800px;
-        height: 800px;
-        margin: 25px auto;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        background: #ccc;
-    }
-
     .item-layout {
         background: #343434 !important;
         border: 1px solid #ccc !important;
