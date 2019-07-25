@@ -27,7 +27,7 @@
 </template>
 
 <script>
-    import FreeTransform from "./freeTransform"
+    import FreeTransform from "./FreeTransform"
 
     export default {
         name: "Sample",
