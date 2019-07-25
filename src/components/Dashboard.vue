@@ -44,7 +44,7 @@
 
 <script>
     import VueGridLayout from 'vue-grid-layout'
-    import Widget from "./widget"
+    import Widget from "./Widget"
     import myWorker from "worker-loader!../service/WebWorker.js";
 
     const testLayout = [

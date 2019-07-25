@@ -7,8 +7,8 @@ Vue.config.productionTip = false
 Vue.use(VueRouter)
 
 const routes = [
-    { path: '/sample', component: () => import('./components/sample')},
-    { path: '*', component: () => import('./components/dashboard')},
+    { path: '/sample', component: () => import('./components/Sample')},
+    { path: '*', component: () => import('./components/Dashboard')},
 ]
 
 const router = new VueRouter({
