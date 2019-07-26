@@ -12,7 +12,7 @@
 
 <script>
     import BarChart from "../plugins/BarChart"
-    import PieChart from "../plugins/PieChart"
+    // import PieChart from "../plugins/PieChart"
 
     export default {
         name: "Widget",
