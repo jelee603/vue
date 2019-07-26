@@ -1,5 +1,11 @@
 module.exports = {
-  presets: [
-    '@vue/app'
-  ]
+    presets: [
+        '@vue/app'
+    ],
+    env: {
+        test: {
+            presets: ['@babel/preset-env'],
+            plugins: ['istanbul']
+        }
+    }
 }
