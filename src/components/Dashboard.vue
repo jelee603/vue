@@ -135,8 +135,8 @@
                     worker.postMessage('워커 실행');
 
                     // 워커로 부터 메시지를 수신한다.
-                    worker.onmessage = function (e) {
-                        console.log('호출 페이지 - ', e.data);
+                    worker.onmessage = function () {
+                        // console.log('호출 페이지 - ', e.data);
                     };
                 }
                 this.worker = worker;
