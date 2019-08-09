@@ -1,6 +1,5 @@
 <template>
     <div>
-        <router-link to="/">Back</router-link>
         <div class="wrapper">
             <div class="workspace" ref="workspace">
                 <FreeTransform
@@ -23,6 +22,7 @@
                 </FreeTransform>
             </div>
         </div>
+        <router-link to="/">Back</router-link>
     </div>
 </template>
 
@@ -85,15 +85,14 @@
     }
 </script>
 
-<style>
+<style scoped>
     .wrapper {
         flex: 1;
     }
 
     .workspace {
-        width: 800px;
+        width: auto;
         height: 800px;
-        margin: 25px auto;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
         border: 1px solid rgba(0, 0, 0, 0.1);
         background: #ccc;

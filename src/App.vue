@@ -1,9 +1,26 @@
 <template>
   <div id="app">
-      <p>
-        <router-link to="/sample">Go to Sample</router-link>
-      </p>
-      <router-view></router-view>
+      <div class="md-layout">
+          <div class="md-layout-item md-size-15">
+              <div class="viewport">
+                  <md-toolbar :md-elevation="1">
+                      <span class="md-title">Menu</span>
+                  </md-toolbar>
+                  <md-list>
+                      <md-list-item>
+                          <md-icon>home</md-icon>
+                          <span class="md-list-item-text"><router-link to="/">Dashboard</router-link></span>
+                      </md-list-item>
+                      <md-list-item>
+                        <md-icon>menu</md-icon>
+                        <span class="md-list-item-text"><router-link to="/sample">Sample</router-link></span>
+                      </md-list-item>
+                  </md-list>
+              </div>
+          </div>
+          <div class="md-layout-item"><router-view></router-view></div>
+      </div>
+
   </div>
 </template>
 
@@ -16,13 +33,17 @@ export default {
 }
 </script>
 
-<style>
-#app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-}
+<style scoped>
+    #app {
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+        /*margin-top: 60px;*/
+    }
+    .viewport {
+        max-width: 400px;
+        overflow: auto;
+    }
 </style>
