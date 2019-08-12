@@ -15,6 +15,10 @@
                         <md-icon>menu</md-icon>
                         <span class="md-list-item-text"><router-link to="/sample">Sample</router-link></span>
                       </md-list-item>
+                      <md-list-item>
+                          <md-icon>menu</md-icon>
+                          <span class="md-list-item-text"><router-link to="/three">Three</router-link></span>
+                      </md-list-item>
                   </md-list>
               </div>
           </div>
