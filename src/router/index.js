@@ -23,6 +23,10 @@ const routes = [
     {
         path: '/todo',
         component: () => import('../components/List')
+    },
+    {
+        path: '/three',
+        component: () => import('../components/Three')
     }
 ]
 
