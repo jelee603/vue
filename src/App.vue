@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
       <div class="md-layout">
           <div class="md-layout-item md-size-15">
               <div class="viewport">
@@ -19,10 +19,14 @@
                           <md-icon>menu</md-icon>
                           <span class="md-list-item-text"><router-link to="/three">Three</router-link></span>
                       </md-list-item>
+                      <md-list-item>
+                          <md-icon>menu</md-icon>
+                          <span class="md-list-item-text"><router-link to="/style">Style</router-link></span>
+                      </md-list-item>
                   </md-list>
               </div>
           </div>
-          <div class="md-layout-item"><router-view></router-view></div>
+          <div class="md-layout-item md-size-85"><router-view></router-view></div>
       </div>
 
   </div>
@@ -38,16 +42,18 @@ export default {
 </script>
 
 <style scoped>
-    #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        /*margin-top: 60px;*/
-    }
     .viewport {
         max-width: 400px;
         overflow: auto;
+    }
+
+    .md-layout {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+
+    .md-layout-item {
+        height: inherit;
     }
 </style>
