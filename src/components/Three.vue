@@ -13,6 +13,10 @@
                 camera: null
             }
         },
+        mounted() {
+            this.init()
+            this.animate()
+        },
         methods: {
             init: function() {
                 this.scene = new THREE.Scene()
@@ -44,10 +48,6 @@
 
                 this.renderer.render(this.scene, this.camera)
             }
-        },
-        mounted() {
-            this.init()
-            this.animate()
         }
     }
 

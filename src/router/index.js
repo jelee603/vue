@@ -31,6 +31,10 @@ const routes = [
     {
         path: '/style',
         component: () => import('../components/Style')
+    },
+    {
+        path: '/topology',
+        component: () => import('../components/Topology')
     }
 ]
 
