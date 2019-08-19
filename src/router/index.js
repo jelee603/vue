@@ -27,6 +27,10 @@ const routes = [
     {
         path: '/three',
         component: () => import('../components/Three')
+    },
+    {
+        path: '/style',
+        component: () => import('../components/Style')
     }
 ]
 
