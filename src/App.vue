@@ -38,10 +38,18 @@
 
 <script>
 export default {
-  name: 'App',
-  components: {
+    name: 'App',
+    components: {
 
-  }
+    },
+    created() {
+        window.addEventListener("keyup", this.handleKeyEvent)
+    },
+    methods: {
+        handleKeyEvent(e) {
+            // console.log(e)
+        }
+    }
 }
 </script>
 
