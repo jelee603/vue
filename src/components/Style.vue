@@ -1,26 +1,30 @@
 <template>
-    <div class="main">
-        <div class="main-top">
-            <div class="main-top-first">main first</div>
-            <div class="main-top-second">main second</div>
-        </div>
-        <div class="main-center">
-            main-center
-        </div>
-        <div class="main-bottom">
-            <div class="main-bottom-left">
-                bottom left
-            </div>
-            <div class="main-bottom-right">
-                bottom right
-            </div>
-        </div>
+  <div class="main">
+    <div class="main-top">
+      <div class="main-top-first">
+        main first
+      </div>
+      <div class="main-top-second">
+        main second
+      </div>
     </div>
+    <div class="main-center">
+      main-center
+    </div>
+    <div class="main-bottom">
+      <div class="main-bottom-left">
+        bottom left
+      </div>
+      <div class="main-bottom-right">
+        bottom right
+      </div>
+    </div>
+  </div>
 </template>
 <script>
-    export default {
-        name: "Style",
-    }
+export default {
+    name: 'Style'
+}
 </script>
 <style>
     .main {
