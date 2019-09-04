@@ -8,7 +8,7 @@
                   </md-toolbar>
                   <md-list>
                       <md-list-item>
-                          <md-icon>home</md-icon>
+                          <md-icon>bar_chart</md-icon>
                           <span class="md-list-item-text"><router-link to="/">Dashboard</router-link></span>
                       </md-list-item>
                       <md-list-item>
@@ -26,6 +26,10 @@
                       <md-list-item>
                           <md-icon>menu</md-icon>
                           <span class="md-list-item-text"><router-link to="/topology">Topology</router-link></span>
+                      </md-list-item>
+                      <md-list-item>
+                          <md-icon>bar_chart</md-icon>
+                          <span class="md-list-item-text"><router-link to="/chart">Chart</router-link></span>
                       </md-list-item>
                   </md-list>
               </div>

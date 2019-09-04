@@ -35,6 +35,10 @@ const routes = [
     {
         path: '/topology',
         component: () => import('../components/Topology')
+    },
+    {
+        path: '/chart',
+        component: () => import('../components/Chart')
     }
 ]
 
