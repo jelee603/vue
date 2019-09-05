@@ -1,13 +1,15 @@
 <template>
   <div>
-    <svg class="bar-chart" />
-    <canvas
-      id="myCanvas"
-      class="bar-chart"
-    />
-    <legend
-      for="myCanvas"
-    />
+    <svg class="bar-chart"></svg>
+    <div class="canvas-chart">
+      <legend
+        for="myCanvas"
+      ></legend>
+      <canvas
+        id="myCanvas"
+        class="bar-chart"
+      ></canvas>
+    </div>
   </div>
 </template>
 
@@ -18,11 +20,11 @@ import CanvasBarChart from '../plugins/CanvasBarChart'
 export default {
     mounted () {
         /**
-             * draw svg chart
-             * d3를 사용한 차트생성
-             */
+         * draw svg chart
+         * d3를 사용한 차트생성
+         */
         const width = '100%'
-        const height = 500
+        const height = 200
         const svg = d3.select('svg')
             .attr('width', width)
             .attr('height', height)
@@ -47,9 +49,9 @@ export default {
             })
 
         /**
-             * draw canvas chart
-             * 캔버스로 차트생성
-             */
+         * draw canvas chart
+         * 캔버스로 차트생성
+         */
         const myCanvas = document.getElementById('myCanvas')
         myCanvas.width = 800
         myCanvas.height = 500
@@ -81,6 +83,9 @@ export default {
 
 <style>
     .bar-chart {
-        background: lightpink;
+        border: 1px solid #cccccc;
+    }
+    .canvas-chart {
+        display: flex;
     }
 </style>
