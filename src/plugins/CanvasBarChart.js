@@ -8,18 +8,19 @@ export default class CanvasBarChart {
 
     draw () {
         const data = this.options.data
-        const numberOfBars = Object.keys(data).length
+        const cateLength = Object.keys(data).length
         let cateIndex = 0
 
         for (const category in data) {
             if (Object.prototype.hasOwnProperty.call(data, category)) {
                 const barPadding = this.options.padding
                 const values = data[category]
-                const maxValue = Math.max.apply(null, data[category]) // 카테고리가 생성되면 카테고리별 MAX 값이 존재한다.
-                const categoryHeight = this.canvas.height / numberOfBars // 카테고리의 최소 높이
+                const maxValue = Math.max.apply(null, data[category]) + 10 // 카테고리가 생성되면 카테고리별 MAX 값이 존재한다.
+                const categoryHeight = Math.round((this.canvas.height - barPadding) / cateLength) // 카테고리 영역의 최소 높이 (하단 영역을 빼준다)
                 const canvasActualHeight = categoryHeight * (cateIndex + 1) - (categoryHeight * cateIndex) // 차트영역의 캔버스 너비
                 const canvasActualWidth = this.canvas.width - barPadding * 2
-                const barWidth = (canvasActualWidth / numberOfBars) // 막대의 너비
+                const numberOfBars = values.length
+                const lastLineHeight = canvasActualHeight + (categoryHeight * cateIndex) + barPadding
                 let gridValue = 0
                 let barIndex = 0
 
@@ -28,7 +29,7 @@ export default class CanvasBarChart {
                     const gridX = barPadding * 2
                     const gridY = canvasActualHeight * (1 - gridValue / maxValue) + barPadding + (categoryHeight * cateIndex)
 
-                    console.log('gridY', gridY)
+                    // console.log('gridY', gridY)
                     CanvasBarChart.drawLine(
                         this.ctx,
                         gridX, // 0,
@@ -45,20 +46,37 @@ export default class CanvasBarChart {
                     gridValue += this.options.gridScale
                 }
 
+                console.log(canvasActualHeight + (categoryHeight * cateIndex))
+
+                // draw bar
                 for (const val of values) {
+                    const barWidth = (canvasActualWidth / numberOfBars) // 막대의 너비
                     const barHeight = Math.round(canvasActualHeight * (val / maxValue))
                     const barX = (barPadding * 2) + (barIndex * barWidth)
                     const barY = canvasActualHeight - barHeight + barPadding + (categoryHeight * cateIndex)
+
                     CanvasBarChart.drawBar(
                         this.ctx,
                         barX,
                         barY,
                         barWidth - barPadding,
                         barHeight,
-                        this.colors[barIndex % this.colors.length]
+                        this.colors[cateIndex]
                     )
+
                     barIndex++
                 }
+
+                // draw last line
+                CanvasBarChart.drawLine(
+                    this.ctx,
+                    0, // 0,
+                    lastLineHeight,
+                    this.canvas.width,
+                    lastLineHeight,
+                    '#black',
+                    2
+                )
             }
 
             // draw title
@@ -86,12 +104,13 @@ export default class CanvasBarChart {
         }
     }
 
-    static drawLine (ctx, startX, startY, endX, endY, color) {
+    static drawLine (ctx, startX, startY, endX, endY, color, lineWidth = 1) {
         ctx.save()
         ctx.strokeStyle = color
         ctx.beginPath()
         ctx.moveTo(startX, startY)
         ctx.lineTo(endX, endY)
+        ctx.lineWidth = lineWidth
         ctx.stroke()
         ctx.restore()
     }

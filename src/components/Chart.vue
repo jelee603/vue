@@ -7,7 +7,6 @@
       ></legend>
       <canvas
         id="myCanvas"
-        class="bar-chart"
       ></canvas>
     </div>
   </div>
@@ -57,15 +56,15 @@ export default {
         myCanvas.height = 500
 
         const myVinyls = {
-            Critical: [10, 20, 30],
-            Warning: [20, 11, 9],
-            Normal: [12, 25, 35]
+            purple: [10, 20, 30, 40, 50, 60, 70, 80],
+            cyan: [20, 11, 9, 12, 33, 34, 22, 12],
+            green: [12, 25, 35, 22, 10, 12, 45, 60]
         }
 
         const myBarChart = new CanvasBarChart({
             canvas: myCanvas,
             padding: 10,
-            gridScale: 5,
+            gridScale: 6,
             gridColor: '#eeeeee',
             data: myVinyls,
             colors: ['#a55ca5', '#67b6c7', '#bccd7a', '#eb9743'],
