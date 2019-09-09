@@ -102,6 +102,17 @@ export default class CanvasBarChart {
             ul.append(li)
             cateIndex++
         }
+
+        this.canvas.addEventListener('click', e => {
+            const cRect = this.getBoundingClientRect()
+            const canvasX = Math.round(e.clientX - cRect.left)
+            const canvasY = Math.round(e.clientY - cRect.top)
+            console.log('canvas >>', canvasX, canvasY)
+        })
+
+        this.canvas.addEventListener('mousemove', () => {
+
+        })
     }
 
     static drawLine (ctx, startX, startY, endX, endY, color, lineWidth = 1) {

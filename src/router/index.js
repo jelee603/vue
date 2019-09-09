@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        component: () => import('../components/Dashboard')
+        component: () => import('../components/Chart')
     },
     {
         path: '/hello',
