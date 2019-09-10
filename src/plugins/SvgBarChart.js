@@ -29,7 +29,7 @@ export default class SvgBarChart {
 
         const x = d3.scaleBand() // x축은 band 로 잡아주고, domain 에 데이터를 입력한다.
             .domain(timeSet)
-            .range([0, 900]) // 눈금의 폭을 지정한다.
+            .range([0, canvasActualWidth]) // 눈금의 폭을 지정한다.
             .padding([0.6])
 
         const bar = svg.selectAll('rect') // 아이템을 그려줄 사각형을 찾는다.
@@ -148,4 +148,3 @@ export default class SvgBarChart {
         // console.log(this.id)
     }
 }
-
