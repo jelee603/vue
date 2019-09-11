@@ -1,6 +1,6 @@
 <template>
   <div>
-    <svg class="bar-chart"></svg>
+    <div class="bar-chart" id="myD3"></div>
     <div class="canvas-chart">
       <legend
         for="myCanvas"
@@ -22,7 +22,7 @@ export default {
          * draw svg chart
          * d3를 사용한 차트생성
          */
-        const svgChart = new SvgBarChart()
+        const svgChart = new SvgBarChart('myD3')
         svgChart.draw()
 
         /**
@@ -70,4 +70,12 @@ export default {
     /*    stroke-width: 5px;*/
     /*    stroke-dasharray: 3, 3;*/
     /*}*/
+    .tooltip {
+        position: absolute;
+        text-align: left;
+        padding-left: 10px;
+        width: 80px;
+        background: #000000;
+        color: #ffffff;
+    }
 </style>
