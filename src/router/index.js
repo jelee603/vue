@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        component: () => import('../components/Dashboard')
+        component: () => import('../components/Chart')
     },
     {
         path: '/hello',
@@ -27,6 +27,18 @@ const routes = [
     {
         path: '/three',
         component: () => import('../components/Three')
+    },
+    {
+        path: '/style',
+        component: () => import('../components/Style')
+    },
+    {
+        path: '/topology',
+        component: () => import('../components/Topology')
+    },
+    {
+        path: '/chart',
+        component: () => import('../components/Chart')
     }
 ]
 
