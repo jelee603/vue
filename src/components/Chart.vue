@@ -1,20 +1,30 @@
 <template>
   <div>
-    <div class="bar-chart" id="myD3"></div>
-    <div class="canvas-chart">
+    <div id="myD3" class="bar-chart" />
+    <!-- <div class="canvas-chart">
       <legend
         for="myCanvas"
       ></legend>
       <canvas
         id="myCanvas"
       ></canvas>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 import SvgBarChart from '../plugins/SvgBarChart'
-import CanvasBarChart from '../plugins/CanvasBarChart'
+// import CanvasBarChart from '../plugins/CanvasBarChart'
+
+const mockData = [
+    [190, 10, 16, 20, 60, 30, 40, 20, 60, 15, 50, 22, 8, 10, 10, 20, 30, 22, 10, 30, 50],
+    [29, 20, 26, 10, 10, 3, 4, 12, 16, 15, 20, 12, 8, 10, 10, 20, 10, 10, 20, 30, 30],
+    [19, 10, 16, 30, 30, 30, 40, 32, 36, 25, 23, 22, 28, 20, 15, 18, 11, 12, 22, 32, 35]
+]
+const mockCategory = [
+    { index: 1, name: 'Cate1', color: '#25b0ed' },
+    { index: 2, name: 'Cate2', color: '#1cb57e' },
+    { index: 3, name: 'Cate3', color: '#ffa733' }]
 
 export default {
     mounted () {
@@ -22,7 +32,11 @@ export default {
          * draw svg chart
          * d3를 사용한 차트생성
          */
-        const svgChart = new SvgBarChart('myD3')
+        const svgChart = new SvgBarChart({
+            id: 'myD3',
+            dataset: mockData,
+            category: mockCategory
+        })
         svgChart.draw()
 
         /**
