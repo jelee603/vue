@@ -13,9 +13,15 @@ export default class SvgBarChart {
         this.xAxisHeight = 20
         this.paddingLeft = 50
         this.step = 6
-        this.numberOfBars = this.category[0].length
+        this.numberOfBars = this.dataset[0].length
         this.barWidth = null
         this.barFactory = null
+
+        // Tootip Setting
+        this.tooltip = d3.select(`#${this.id}`)
+            .append('div')
+            .attr('class', 'tooltip')
+            .style('display', 'none')
     }
 
     _showTooltip (value, index, nodes) {
@@ -91,11 +97,6 @@ export default class SvgBarChart {
         svg.append('g')
             .attr('transform', `translate(${this.paddingLeft}, ${this.height - this.xAxisHeight})`)
             .call(d3.axisBottom(xAxis).ticks(this.step)) // 하단에 x축을 추가한다.
-
-        this.tooltip = d3.select(`#${this.id}`)
-            .append('div')
-            .attr('class', 'tooltip')
-            .style('display', 'none')
 
         // Draw Graph
         this.barFactory = svg.selectAll('rect') // 아이템을 그려줄 사각형을 찾는다.
