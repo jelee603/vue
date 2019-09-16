@@ -16,12 +16,12 @@ export default class SvgBarChart {
         this.numberOfBars = this.dataset[0].length
         this.barWidth = null
         this.barFactory = null
-
-        // Tootip Setting
         this.tooltip = d3.select(`#${this.id}`)
             .append('div')
             .attr('class', 'tooltip')
             .style('display', 'none')
+        this._showTooltip = this._showTooltip.bind(this)
+        this._hideTooltip = this._hideTooltip.bind(this)
     }
 
     _showTooltip (value, index, nodes) {
@@ -39,7 +39,8 @@ export default class SvgBarChart {
     }
 
     _hideTooltip (value, index, nodes) {
-        const name = this.getAttribute('name')
+        const target = nodes[index]
+        const name = target.getAttribute('name')
 
         d3.select(nodes[index])
             .attr('fill', this._getColors(name))
