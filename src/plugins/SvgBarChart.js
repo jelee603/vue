@@ -7,11 +7,13 @@ export default class SvgBarChart {
         this.category = category
 
         // Graph Setting
-        this.width = '100%'
-        this.height = 220
+        this.wrapperWidth = '100%'
+        this.wrapperHeight = 220
         this.barPadding = 5
         this.xAxisHeight = 20
-        this.paddingLeft = 50
+        this.padding = 50
+        this.legendPadding = 10
+        this.legendWidth = null
         this.step = 6
         this.numberOfBars = this.dataset[0].length
         this.barWidth = null
@@ -49,15 +51,15 @@ export default class SvgBarChart {
 
     _drawBarChart (dataSet, name, index) {
         const maxValue = 90
-        const posX = 60
-        const height = 220 / 3 * (index + 1)
+        const posX = this.padding + this.legendWidth
+        const barHeight = (this.height / this.category.length)
 
         this.barFactory.data(dataSet) // 데이터를 입력한다.
             .enter()
             .append('rect') // 데이터 갯수만큼 사각형을 생성한다.
             .attr('x', posX)
-            .attr('y', d => height - this.xAxisHeight - ((d / height) * this.xAxisHeight))
-            .attr('height', d => ((d / maxValue) * this.xAxisHeight))
+            .attr('y', d => (barHeight - (d / maxValue) * barHeight) * (index + 1))
+            .attr('height', d => ((d / maxValue) * barHeight))
             .attr('width', this.barWidth - this.barPadding)
             .attr('transform', (_, i) => {
                 const xCoordinate = this.barWidth * i
@@ -84,19 +86,20 @@ export default class SvgBarChart {
         // Set Svg Wrapper Setting
         const svg = d3.select(`#${this.id}`) // div container 를 찾는다.
             .append('svg') // svg 를 만든다.
-            .attr('width', this.width)
-            .attr('height', this.height)
+            .attr('width', this.wrapperWidth)
+            .attr('height', this.wrapperHeight)
             .style('border', '1px solid black')
-        const canvasActualWidth = document.querySelector('svg').clientWidth // 캔버스 전체 사이즈의 clientWith 를 사용한다.
-        this.barWidth = ((canvasActualWidth - this.paddingLeft * 2) / this.numberOfBars) // 막대의 너비는 데이터 갯수에 따라 달라진다.
+        this.width = document.querySelector('svg').clientWidth // 캔버스 전체 사이즈의 clientWith 를 사용한다.
+        this.height = document.querySelector('svg').clientHeight
+        this.barWidth = ((this.width - (this.padding * 2) - this.legendWidth) / this.numberOfBars) // 막대 너비는 실제 갯수에 따라
 
         // Draw axis X
         const xAxis = d3.scaleTime() // x축은 band 로 잡아주고, domain 에 데이터를 입력한다.
             .domain([new Date('2019-09-11 13:00:00'), new Date('2019-09-11 16:00:00')])
-            .range([0, canvasActualWidth - this.paddingLeft * 2]) // 눈금의 폭을 지정한다.
+            .range([0, this.width - (this.padding * 2) - this.legendWidth]) // 눈금의 폭을 지정한다.
 
         svg.append('g')
-            .attr('transform', `translate(${this.paddingLeft}, ${this.height - this.xAxisHeight})`)
+            .attr('transform', `translate(${this.padding + this.legendWidth}, ${this.height - this.xAxisHeight})`)
             .call(d3.axisBottom(xAxis).ticks(this.step)) // 하단에 x축을 추가한다.
 
         // Draw Graph
@@ -106,24 +109,21 @@ export default class SvgBarChart {
             this._drawBarChart(this.dataset[i], this.category[i].name, i)
         }
 
-        // Draw Label
+        // Draw Legend
         const gab = v => v * 60
-        const legend = svg.append('g')
-            .attr('class', 'legend')
-
-        const lg = legend.selectAll('g') // 아이템을 그려줄 svg 를 찾는다.
+        const legend = svg.append('g').selectAll('g') // 아이템을 그려줄 svg 를 찾는다.
             .data(this.category) // 데이터를 입력한다.
             .enter()
             .append('g')
 
-        lg.append('rect') // rect 를 추가한다.
+        legend.append('rect') // rect 를 추가한다.
             .attr('x', 0)
             .attr('y', d => gab(d.index) - 20)
             .attr('width', 10)
             .attr('height', 30)
             .style('fill', d => this._getColors(d.name))
 
-        lg.append('text')
+        legend.append('text')
             .text(d => d.name)
             .attr('x', 10)
             .attr('y', d => gab(d.index))
