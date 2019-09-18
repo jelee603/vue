@@ -101,11 +101,11 @@ export default class SvgBarChart {
 
         const xAxis = d3.axisBottom(xScale)
             .ticks(this.step) // 하단에 x축을 추가한다.
-            .tickFormat(date => moment(date).format("YYYY-MM-DD HH:mm"))
+            .tickFormat(date => moment(date).format('YYYY-MM-DD HH:mm'))
 
         svg.append('g')
             .attr('transform', `translate(${this.padding + this.legendWidth}, ${this.height - this.xAxisHeight})`)
-            .call(xAxis);
+            .call(xAxis)
 
         // Draw Graph
         this.barFactory = svg.selectAll('rect') // 아이템을 그려줄 사각형을 찾는다.
