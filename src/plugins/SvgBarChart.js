@@ -37,7 +37,7 @@ export default class SvgBarChart {
         this.tooltip.html(`value: ${value}`)
 
         d3.select(target)
-            .attr('fill', 'red')
+            .attr('opacity', '0.5')
             .style('cursor', 'pointer')
     }
 
@@ -46,6 +46,7 @@ export default class SvgBarChart {
         const name = target.getAttribute('name')
 
         d3.select(nodes[index])
+            .attr('opacity', '1')
             .attr('fill', this._getColors(name))
         this.tooltip.style('display', 'none')
     }
