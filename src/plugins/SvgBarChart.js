@@ -1,4 +1,5 @@
 import * as d3 from 'd3'
+import moment from 'moment'
 
 export default class SvgBarChart {
     constructor ({ id, dataset, category }) {
@@ -36,7 +37,7 @@ export default class SvgBarChart {
         this.tooltip.html(`value: ${value}`)
 
         d3.select(target)
-            .attr('fill', 'red')
+            .attr('opacity', '0.5')
             .style('cursor', 'pointer')
     }
 
@@ -45,6 +46,7 @@ export default class SvgBarChart {
         const name = target.getAttribute('name')
 
         d3.select(nodes[index])
+            .attr('opacity', '1')
             .attr('fill', this._getColors(name))
         this.tooltip.style('display', 'none')
     }
@@ -52,13 +54,13 @@ export default class SvgBarChart {
     _drawBarChart (dataSet, name, index) {
         const maxValue = 90
         const posX = this.padding + this.legendWidth
-        const barHeight = (this.height / this.category.length)
+        const barHeight = ((this.height - this.xAxisHeight) / this.category.length)
 
         this.barFactory.data(dataSet) // 데이터를 입력한다.
             .enter()
             .append('rect') // 데이터 갯수만큼 사각형을 생성한다.
             .attr('x', posX)
-            .attr('y', d => (barHeight - (d / maxValue) * barHeight) * (index + 1))
+            .attr('y', d => (barHeight * (index + 1)) - (d / maxValue) * barHeight)
             .attr('height', d => ((d / maxValue) * barHeight))
             .attr('width', this.barWidth - this.barPadding)
             .attr('transform', (_, i) => {
@@ -94,13 +96,17 @@ export default class SvgBarChart {
         this.barWidth = ((this.width - (this.padding * 2) - this.legendWidth) / this.numberOfBars) // 막대 너비는 실제 갯수에 따라
 
         // Draw axis X
-        const xAxis = d3.scaleTime() // x축은 band 로 잡아주고, domain 에 데이터를 입력한다.
+        const xScale = d3.scaleTime() // x축은 band 로 잡아주고, domain 에 데이터를 입력한다.
             .domain([new Date('2019-09-11 13:00:00'), new Date('2019-09-11 16:00:00')])
             .range([0, this.width - (this.padding * 2) - this.legendWidth]) // 눈금의 폭을 지정한다.
 
+        const xAxis = d3.axisBottom(xScale)
+            .ticks(this.step) // 하단에 x축을 추가한다.
+            .tickFormat(date => moment(date).format('YYYY-MM-DD HH:mm'))
+
         svg.append('g')
             .attr('transform', `translate(${this.padding + this.legendWidth}, ${this.height - this.xAxisHeight})`)
-            .call(d3.axisBottom(xAxis).ticks(this.step)) // 하단에 x축을 추가한다.
+            .call(xAxis)
 
         // Draw Graph
         this.barFactory = svg.selectAll('rect') // 아이템을 그려줄 사각형을 찾는다.
