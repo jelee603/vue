@@ -1,31 +1,12 @@
-# vue-widgets
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+## Installation
+``` js
+$ npm install
 ```
 
-### Compiles and minifies for production
+## Quick Start
+Start the server:
 ```
-npm run build
+$ npm run serve
 ```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-See [https://www.npmjs.com/package/free-transform]
-See [https://www.npmjs.com/package/vue-grid-layout]
+View the website at: http://localhost:8080/
