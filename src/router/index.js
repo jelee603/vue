@@ -6,39 +6,43 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        component: () => import('../components/Chart')
+        component: () => import('../views/chartSample')
     },
     {
         path: '/hello',
-        component: () => import('../components/Hello')
+        component: () => import('../views/hello')
     },
     {
         path: '/helloWorld',
-        component: () => import('../components/HelloWorld')
+        component: () => import('../views/helloWorld')
     },
     {
         path: '/sample',
-        component: () => import('../components/Sample')
+        component: () => import('../views/sample')
     },
     {
         path: '/todo',
-        component: () => import('../components/List')
+        component: () => import('../views/list')
     },
     {
         path: '/three',
-        component: () => import('../components/Three')
+        component: () => import('../views/three')
     },
     {
         path: '/style',
-        component: () => import('../components/Style')
+        component: () => import('../views/style')
     },
     {
         path: '/topology',
-        component: () => import('../components/Topology')
+        component: () => import('../views/topology')
     },
     {
         path: '/chart',
-        component: () => import('../components/Chart')
+        component: () => import('../views/chartSample')
+    },
+    {
+        path: '/eChart',
+        component: () => import('../views/eChartSample')
     }
 ]
 

@@ -5,9 +5,9 @@
 <script>
 export default {
     data () {
-      return {
-        message: 'Vue!'
+        return {
+            message: 'Vue!'
+        }
     }
-  }
 }
 </script>

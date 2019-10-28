@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import FreeTransform from './FreeTransform'
+import FreeTransform from './freeTransform'
 
 export default {
     name: 'Sample',

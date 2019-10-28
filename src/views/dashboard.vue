@@ -64,7 +64,7 @@
 
 <script>
 import VueGridLayout from 'vue-grid-layout'
-import Widget from './Widget'
+import Widget from './widget'
 import myWorker from '../service/WebWorker.js'
 
 const testLayout = [

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="myD3" class="bar-chart" />
+    <div id="myD3" class="bar-chart"></div>
     <!-- <div class="canvas-chart">
       <legend
         for="myCanvas"
@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import SvgBarChart from '../plugins/SvgBarChart'
-// import CanvasBarChart from '../plugins/CanvasBarChart'
+import SvgBarChart from '../components/d3/SvgBarChart'
+// import CanvasBarChart from '../components/CanvasBarChart'
 
 const mockData = [
     [190, 10, 16, 20, 60, 30, 40, 20, 60, 15, 50, 22, 8, 10, 10, 20, 30, 22, 10, 30, 50],

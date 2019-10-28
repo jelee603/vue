@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import BarChart from '../plugins/BarChart'
-// import PieChart from "../plugins/PieChart"
+import BarChart from '../components/d3/BarChart'
+// import PieChart from "../components/PieChart"
 
 export default {
     name: 'Widget',
