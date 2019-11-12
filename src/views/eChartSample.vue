@@ -1,73 +1,76 @@
 <template>
-    <div class="box-container">
-        <div class="box">
-            <common-chart chart-type="line"></common-chart>
-        </div>
-        <div class="box">
-            <common-chart chart-type="bar" chart-color="#1a3963"></common-chart>
-        </div>
+  <div class="box-container">
+    <div class="box">
+      <common-chart chart-type="line" />
     </div>
+    <div class="box">
+      <common-chart
+        chart-type="bar"
+        chart-color="#1a3963"
+      />
+    </div>
+  </div>
 </template>
 <script>
 import CommonChart from '../components/echart/CommonChart'
 
 export default {
-    components: { CommonChart },
-    data () {
-        return {
-            myChart: null,
-            option: {
-                title: {
-                    text: 'ECharts entry example',
-                    textStyle: {
-                        color: '#ffffff',
-                        fontSize: 12
-                    },
-                    x: 'center'
-                },
-                tooltip: {},
-                legend: {
-                    data: ['Sales'],
-                    textStyle: {
-                        color: '#919193'
-                    },
-                    bottom: 0
-                },
-                xAxis: {
-                    data: ['shirt', 'cardign', 'chiffon shirt', 'pants', 'heels', 'socks'],
-                    axisLabel: {
-                        color: '#919193'
-                    }
-                },
-                yAxis: {
-                    axisLabel: {
-                        color: '#919193'
-                    },
-                    splitLine: {
-                        lineStyle: {
-                            color: '#919193'
-                        }
-                    }
-                },
-                series: [{
-                    name: 'Sales',
-                    type: 'bar',
-                    data: [5, 20, 36, 10, 10, 20],
-                    itemStyle: {
-                        color: '#ef843c'
-                    }
-                }]
+  components: { CommonChart },
+  data () {
+    return {
+      myChart: null,
+      option: {
+        title: {
+          text: 'ECharts entry example',
+          textStyle: {
+            color: '#ffffff',
+            fontSize: 12
+          },
+          x: 'center'
+        },
+        tooltip: {},
+        legend: {
+          data: ['Sales'],
+          textStyle: {
+            color: '#919193'
+          },
+          bottom: 0
+        },
+        xAxis: {
+          data: ['shirt', 'cardign', 'chiffon shirt', 'pants', 'heels', 'socks'],
+          axisLabel: {
+            color: '#919193'
+          }
+        },
+        yAxis: {
+          axisLabel: {
+            color: '#919193'
+          },
+          splitLine: {
+            lineStyle: {
+              color: '#919193'
             }
-        }
-    },
-    created () {
-    },
-    mounted () {
-    },
-    updated () {
-    },
-    methods: {
+          }
+        },
+        series: [{
+          name: 'Sales',
+          type: 'bar',
+          data: [5, 20, 36, 10, 10, 20],
+          itemStyle: {
+            color: '#ef843c'
+          }
+        }]
+      }
     }
+  },
+  created () {
+  },
+  mounted () {
+  },
+  updated () {
+  },
+  methods: {
+  }
 }
 </script>
 <style>

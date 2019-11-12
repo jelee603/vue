@@ -39,58 +39,58 @@
 import FreeTransform from './freeTransform'
 
 export default {
-    name: 'Sample',
-    components: {
-        FreeTransform
-    },
-    data () {
-        return {
-            offsetX: 0,
-            offsetY: 0,
-            elements: [
-                {
-                    id: 'el-1',
-                    x: 100,
-                    y: 50,
-                    scaleX: 1,
-                    scaleY: 1,
-                    width: 200,
-                    height: 200,
-                    angle: 0,
-                    classPrefix: 'tr',
-                    styles: {
-                        background: 'linear-gradient(135deg, #0FF0B3 0%,#036ED9 100%)'
-                    }
-                }
-            ]
+  name: 'Sample',
+  components: {
+    FreeTransform
+  },
+  data () {
+    return {
+      offsetX: 0,
+      offsetY: 0,
+      elements: [
+        {
+          id: 'el-1',
+          x: 100,
+          y: 50,
+          scaleX: 1,
+          scaleY: 1,
+          width: 200,
+          height: 200,
+          angle: 0,
+          classPrefix: 'tr',
+          styles: {
+            background: 'linear-gradient(135deg, #0FF0B3 0%,#036ED9 100%)'
+          }
         }
-    },
-    mounted () {
-        this.offsetX = this.$refs.workspace.offsetLeft
-        this.offsetY = this.$refs.workspace.offsetTop
-    },
-    methods: {
-        update (id, payload) {
-            // console.log('payload >>', payload)
-            this.elements = this.elements.map(item => {
-                if (item.id === id) {
-                    return {
-                        ...item,
-                        ...payload
-                    }
-                }
-                return item
-            })
-        },
-        getElementStyles (element) {
-            const styles = element.styles ? element.styles : {}
-            return {
-                width: `${element.width}px`,
-                height: `${element.height}px`,
-                ...styles
-            }
-        }
+      ]
     }
+  },
+  mounted () {
+    this.offsetX = this.$refs.workspace.offsetLeft
+    this.offsetY = this.$refs.workspace.offsetTop
+  },
+  methods: {
+    update (id, payload) {
+      // console.log('payload >>', payload)
+      this.elements = this.elements.map(item => {
+        if (item.id === id) {
+          return {
+            ...item,
+            ...payload
+          }
+        }
+        return item
+      })
+    },
+    getElementStyles (element) {
+      const styles = element.styles ? element.styles : {}
+      return {
+        width: `${element.width}px`,
+        height: `${element.height}px`,
+        ...styles
+      }
+    }
+  }
 }
 </script>
 

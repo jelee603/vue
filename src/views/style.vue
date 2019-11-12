@@ -23,7 +23,7 @@
 </template>
 <script>
 export default {
-    name: 'Style'
+  name: 'Style'
 }
 </script>
 <style>

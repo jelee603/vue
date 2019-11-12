@@ -16,11 +16,11 @@
 
 <script>
 export default {
-    name: 'List',
-    data () {
-        return {
-            listItems: ['buy food', 'play games', 'sleep']
-        }
+  name: 'List',
+  data () {
+    return {
+      listItems: ['buy food', 'play games', 'sleep']
     }
+  }
 }
 </script>

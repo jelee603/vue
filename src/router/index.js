@@ -43,6 +43,10 @@ const routes = [
     {
         path: '/eChart',
         component: () => import('../views/eChartSample')
+    },
+    {
+        path: '/Scroll',
+        component: () => import('../views/infinityScroll')
     }
 ]
 
