@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        component: () => import('../views/chartSample')
+        component: () => import('../views/flexBox')
     },
     {
         path: '/hello',
@@ -47,7 +47,12 @@ const routes = [
     {
         path: '/Scroll',
         component: () => import('../views/infinityScroll')
-    }
+    },
+    {
+        path: '/flexBox',
+        component: () => import('../views/flexBox')
+    },
+  
 ]
 
 export default new VueRouter({
