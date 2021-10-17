@@ -31,6 +31,14 @@
               <md-icon>bar_chart</md-icon>
               <span class="md-list-item-text"><router-link to="/chart">Chart</router-link></span>
             </md-list-item>
+            <md-list-item>
+              <md-icon>bar_chart</md-icon>
+              <span class="md-list-item-text"><router-link to="/eChart">EChart</router-link></span>
+            </md-list-item>
+            <md-list-item>
+              <md-icon>bar_chart</md-icon>
+              <span class="md-list-item-text"><router-link to="/Scroll">Scroll</router-link></span>
+            </md-list-item>
           </md-list>
         </div>
       </div>
@@ -43,18 +51,18 @@
 
 <script>
 export default {
-    name: 'App',
-    components: {
+  name: 'App',
+  components: {
 
-    },
-    created () {
-        window.addEventListener('keyup', this.handleKeyEvent)
-    },
-    methods: {
-        handleKeyEvent (e) {
-            // console.log(e)
-        }
+  },
+  created () {
+    window.addEventListener('keyup', this.handleKeyEvent)
+  },
+  methods: {
+    handleKeyEvent (e) {
+      // console.log(e)
     }
+  }
 }
 </script>
 

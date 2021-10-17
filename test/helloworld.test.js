@@ -1,7 +1,7 @@
-import Vue from 'vue';
-import HelloWorld from '../src/components/HelloWorld.vue';
+import Vue from 'vue'
+import HelloWorld from '../src/views/helloWorld.vue'
 
 test('HelloWorld Component', () => {
-    const cmp = new Vue(HelloWorld).$mount();
-    expect(cmp.message).toBe('Vue!');
-});
+    const cmp = new Vue(HelloWorld).$mount()
+    expect(cmp.message).toBe('Vue!')
+})

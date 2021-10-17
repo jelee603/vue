@@ -1,9 +1,8 @@
-var path = require("path")
-var webpack = require("webpack")
+var path = require('path')
+var webpack = require('webpack')
 var VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-function resolve(dir) {
-
+function resolve (dir) {
     return path.join(__dirname, '..', dir)
 }
 
@@ -23,30 +22,30 @@ var webpackConfig = {
                 include: /src|packages/,
                 enforce: 'post',
                 use: [{
-                    loader: "istanbul-instrumenter-loader",
+                    loader: 'istanbul-instrumenter-loader',
                     options: {
                         esModules: true
-                    },
+                    }
                 }]
             },
             {
                 test: /\.vue$/,
                 use: [{
-                    loader: 'vue-loader',
+                    loader: 'vue-loader'
                     // options: {
                     //     preLoaders: {
                     //         js: 'istanbul-instrumenter-loader?esModules=true'
                     //     }
                     // }
                 }]
-            },
+            }
         ]
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {
-            'vue$': 'vue/dist/vue.esm.js',
-            '@': resolve('src'),
+            vue$: 'vue/dist/vue.esm.js',
+            '@': resolve('src')
         }
     },
     plugins: [
